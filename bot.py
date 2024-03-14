@@ -38,6 +38,15 @@ class Bot:
             'back_to_main': lambda: query.edit_message_text(text=self.bot_replies['hello_message'], reply_markup=KEYBOARD.main_menu()),
             'back_to_body_parts': lambda: query.edit_message_text(text=self.bot_replies['hello_message'], reply_markup=KEYBOARD.body_parts()),
             'head': lambda: query.edit_message_text(text=self.bot_replies['head'], reply_markup=KEYBOARD.head()),
+            'throat': lambda: query.edit_message_text(text=self.bot_replies['throat'], reply_markup=KEYBOARD.throat()),
+            'stomach': lambda: query.edit_message_text(text=self.bot_replies['stomach'], reply_markup=KEYBOARD.stomach()),
+            'intestines': lambda: query.edit_message_text(text=self.bot_replies['intestines'], reply_markup=KEYBOARD.intestines()),
+            'heart': lambda: query.edit_message_text(text=self.bot_replies['heart'], reply_markup=KEYBOARD.heart()),
+            'kidneys': lambda: query.edit_message_text(text=self.bot_replies['kidneys'], reply_markup=KEYBOARD.kidneys()),
+            'lungs': lambda: query.edit_message_text(text=self.bot_replies['lungs'], reply_markup=KEYBOARD.lungs()),
+            'eyes': lambda: query.edit_message_text(text=self.bot_replies['eyes'], reply_markup=KEYBOARD.eyes()),
+            'teeth': lambda: query.edit_message_text(text=self.bot_replies['teeth'], reply_markup=KEYBOARD.teeth()),
+            'head': lambda: query.edit_message_text(text=self.bot_replies['head'], reply_markup=KEYBOARD.head())
         }
 
         # Обработка специфических запросов по здоровью через единый подход
@@ -52,10 +61,10 @@ class Bot:
             'pneumothorax', 'pulmonary_edema', #ЛЕГКИЕ
             'retinal_detachment','glaucomatous_crisis','chemical_eye_burn', #ГЛАЗА
             'tooth_abscess','osteomyelitis','bad_jaw_injury', #ЗУБЫ
-            'bruise', 'dislocation', 'fracture', 'bleeding', 'cold'
+            'bruise', 'dislocation', 'fracture', 'bleeding' #ЧАСТЫЕ ПРОБЛЕМЫ
             ]
 
         if query.data in main_actions:
             main_actions[query.data]()
         elif query.data in health_issues:
-            query.edit_message_text(text=Tools.read_html(f"{self.issues}/{query.data}.html"), parse_mode=ParseMode.HTML, reply_markup=KEYBOARD.back_to_body_parts())
+            query.edit_message_text(text=Tools.read_html(f"{self.issues}/{query.data}.html"), parse_mode=ParseMode.HTML, reply_markup=KEYBOARD.back_to_main())
